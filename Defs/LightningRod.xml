@@ -10,14 +10,14 @@
     <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
     <filthLeaving>BuildingRubble</filthLeaving>
     <defName>LightningRod</defName>
-    <label>Lightning Rod</label>
+    <label>lightning rod</label>
     <graphicData>
-      <texPath>Rod-Offset</texPath>
+      <texPath>lightning-rod</texPath>
       <graphicClass>Graphic_Single</graphicClass>
 	  <shaderType>CutoutComplex</shaderType>
       <drawSize>(8,8)</drawSize>
       <shadowData>
-        <volume>(0.2,1,0.2)</volume>
+        <volume>(0.7,1,0.7)</volume>
       </shadowData>
     </graphicData>
     <altitudeLayer>Pawn</altitudeLayer>
@@ -34,7 +34,7 @@
       <Beauty>-40</Beauty>
     </statBases>
     <tickerType>Normal</tickerType>
-    <description>A lightning rod plated with pure silver with IonTec 600x ion beam emitter for map-wide protection from lightning strikes.\n\nRequires power, but discharges power for a short while after it gets hit.</description>
+    <description>A lightning rod with an ion beam emitter for map-wide protection from lightning strikes.\n\nRequires power, but discharges power for a short while after it gets hit. Can get overwhelmed.</description>
     <size>(1,1)</size>
     <costStuffCount>150</costStuffCount>
     <CostList>
@@ -45,7 +45,7 @@
     <stuffCategories>
       <li>Metallic</li>
     </stuffCategories>
-	<uiIconPath>Rod-OffsetMenuIcon</uiIconPath>
+	<uiIconPath>lightning-rod_MenuIcon</uiIconPath>
     <comps>
 	  <li Class="SSLightningRod.CompProperties_LightningRod">
 	    <compClass>SSLightningRod.CompLightningRod</compClass>

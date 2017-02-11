@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+	<name>SS Lightning Rod</name>
+	<author>Spdskatr</author>
+	<targetVersion>0.16.1393</targetVersion>
+	<description>Adds a lightning rod that can direct lightning bolts away from the colony's precious buildings.</description>
+</ModMetaData>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Buildings>
+  <ThingDef>
+    <category>Building</category>
+    <thingClass>Building</thingClass>
+    <soundImpactDefault>BulletImpactMetal</soundImpactDefault>
+    <selectable>true</selectable>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <repairEffect>Repair</repairEffect>
+    <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+    <filthLeaving>BuildingRubble</filthLeaving>
+    <defName>LightningRod</defName>
+    <label>Lightning Rod</label>
+    <graphicData>
+      <texPath>Rod-Offset</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+	  <shaderType>CutoutComplex</shaderType>
+      <drawSize>(8,8)</drawSize>
+      <shadowData>
+        <volume>(0.2,1,0.2)</volume>
+      </shadowData>
+    </graphicData>
+    <altitudeLayer>Pawn</altitudeLayer>
+    <passability>Impassable</passability>
+    <blockWind>true</blockWind>
+    <castEdgeShadows>false</castEdgeShadows>
+	<scatterableOnMapGen>false</scatterableOnMapGen>
+	<fillPercent>1</fillPercent>
+    <blockLight>true</blockLight>
+    <statBases>
+      <MaxHitPoints>500</MaxHitPoints>
+      <WorkToBuild>6000</WorkToBuild>
+      <Flammability>1.0</Flammability>
+      <Beauty>-40</Beauty>
+    </statBases>
+    <tickerType>Normal</tickerType>
+    <description>A lightning rod plated with pure silver with IonTec 600x ion beam emitter for map-wide protection from lightning strikes.\n\nRequires power, but discharges power for a short while after it gets hit.</description>
+    <size>(1,1)</size>
+    <costStuffCount>150</costStuffCount>
+    <CostList>
+      <Silver>200</Silver>
+	  <Steel>35</Steel>
+      <Component>5</Component>
+    </CostList>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+	<uiIconPath>Rod-OffsetMenuIcon</uiIconPath>
+    <comps>
+	  <li Class="SSLightningRod.CompProperties_LightningRod">
+	    <compClass>SSLightningRod.CompLightningRod</compClass>
+	    <cooldownSpeed>0.25</cooldownSpeed>
+		<chargeCapacity>2000</chargeCapacity>
+		<fakeZIndex>4</fakeZIndex>
+        <startElectricalFires>false</startElectricalFires>
+        <basePowerConsumption>500</basePowerConsumption>
+		<transmitsPower>true</transmitsPower>
+	  </li>
+      <li Class="CompProperties_Flickable"/>
+      <li Class="CompProperties_Breakdownable"/>
+    </comps>
+    <rotatable>false</rotatable>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    <designationCategory>Misc</designationCategory>
+    <building>
+	  <ai_chillDestination>false</ai_chillDestination>
+      <ignoreNeedsPower>false</ignoreNeedsPower>
+    </building>
+    <placeWorkers>
+      <li>PlaceWorker_NotUnderRoof</li>
+    </placeWorkers>
+    <designationHotkey>Misc6</designationHotkey>
+    <researchPrerequisites><li>Machining</li></researchPrerequisites>
+  </ThingDef>
+</Buildings>

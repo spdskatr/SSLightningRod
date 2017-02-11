@@ -1,0 +1,12 @@
+C:\Everything\AWESOME CODE STUFF\RimWorld - Dev tool for modders\Mods\[SS] Lightning Rod\Source\bin\Debug\Assembly-CSharp.dll
+C:\Everything\AWESOME CODE STUFF\RimWorld - Dev tool for modders\Mods\[SS] Lightning Rod\Source\bin\Debug\HugsLib.dll
+C:\Everything\AWESOME CODE STUFF\RimWorld - Dev tool for modders\Mods\[SS] Lightning Rod\Source\bin\Debug\UnityEngine.dll
+C:\Everything\AWESOME CODE STUFF\RimWorld - Dev tool for modders\Mods\[SS] Lightning Rod\Source\bin\Debug\Assembly-CSharp-firstpass.dll
+C:\Everything\AWESOME CODE STUFF\RimWorld - Dev tool for modders\Mods\[SS] Lightning Rod\Source\bin\Debug\NAudio.dll
+C:\Everything\AWESOME CODE STUFF\RimWorld - Dev tool for modders\Mods\[SS] Lightning Rod\Source\bin\Debug\NVorbis.dll
+C:\Everything\AWESOME CODE STUFF\RimWorld - Dev tool for modders\Mods\[SS] Lightning Rod\Source\bin\Debug\UnityEngine.xml
+C:\Everything\AWESOME CODE STUFF\RimWorld - Dev tool for modders\Mods\[SS] Lightning Rod\Source\bin\Debug\LightningRod.dll
+C:\Everything\AWESOME CODE STUFF\RimWorld - Dev tool for modders\Mods\[SS] Lightning Rod\Source\bin\Debug\LightningRod.pdb
+C:\Everything\AWESOME CODE STUFF\RimWorld - Dev tool for modders\Mods\[SS] Lightning Rod\Source\obj\Debug\LightningRod.dll
+C:\Everything\AWESOME CODE STUFF\RimWorld - Dev tool for modders\Mods\[SS] Lightning Rod\Source\obj\Debug\LightningRod.pdb
+C:\Everything\AWESOME CODE STUFF\RimWorld - Dev tool for modders\Mods\[SS] Lightning Rod\Source\obj\Debug\SSLightningRod.csprojResolveAssemblyReference.cache

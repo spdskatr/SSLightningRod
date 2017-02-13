@@ -1,0 +1,13 @@
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\[SS] Lightning Rod\Source\bin\Release\LightningRod.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\[SS] Lightning Rod\Source\bin\Release\LightningRod.pdb
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\[SS] Lightning Rod\Source\bin\Release\Assembly-CSharp.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\[SS] Lightning Rod\Source\bin\Release\HugsLib.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\[SS] Lightning Rod\Source\bin\Release\UnityEngine.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\[SS] Lightning Rod\Source\bin\Release\Assembly-CSharp-firstpass.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\[SS] Lightning Rod\Source\bin\Release\NAudio.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\[SS] Lightning Rod\Source\bin\Release\NVorbis.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\[SS] Lightning Rod\Source\bin\Release\UnityEngine.xml
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\[SS] Lightning Rod\Source\obj\Release\LightningRod.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\[SS] Lightning Rod\Source\obj\Release\LightningRod.pdb
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\[SS] Lightning Rod\Assemblies\LightningRod.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\[SS] Lightning Rod\Assemblies\LightningRod.pdb

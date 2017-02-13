@@ -34,7 +34,7 @@
       <Beauty>-40</Beauty>
     </statBases>
     <tickerType>Normal</tickerType>
-    <description>A lightning rod with an ion beam emitter for map-wide protection from lightning strikes.\n\nRequires power, but discharges power for a short while after it gets hit. Can get overwhelmed.</description>
+    <description>A lightning rod with an ion beam emitter for map-wide protection from lightning strikes.\n\nRequires power, but discharges power for a short while after it gets hit. Can get overwhelmed.\n\nThese rods were called by many Zeon Resistance agents as "Rapiers", due to the structure looking like a sword protruding into the sky, and is also a symbol Zeon's eventual downfall at the mercy of this lightning rod.</description>
     <size>(1,1)</size>
     <costStuffCount>150</costStuffCount>
     <CostList>
@@ -53,8 +53,12 @@
 		<chargeCapacity>2000</chargeCapacity>
 		<fakeZIndex>4</fakeZIndex>
         <startElectricalFires>false</startElectricalFires>
-        <basePowerConsumption>500</basePowerConsumption>
+        <basePowerConsumption>750</basePowerConsumption>
 		<transmitsPower>true</transmitsPower>
+		<oneInXChanceHitPowerSave>4</oneInXChanceHitPowerSave>
+		<powerGainDischarge>2000</powerGainDischarge>
+		<strikesHitBase>false</strikesHitBase>
+		<cooldownPercentPowerSave>50</cooldownPercentPowerSave>
 	  </li>
       <li Class="CompProperties_Flickable"/>
       <li Class="CompProperties_Breakdownable"/>

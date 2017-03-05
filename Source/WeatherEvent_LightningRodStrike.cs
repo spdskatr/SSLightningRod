@@ -51,6 +51,16 @@ namespace SSLightningRod
                             result = true;
                         }
                     }
+                    else if (comp != null && !comp.notOverwhelmed && comp.PowerOn && comp.ToggleMode != 1)
+                    {
+                        int h = random.Next(comp.powersavechance);
+                        if (h == 0)
+                        {
+                            //Log.Message("Added overwhelmed building to activeRods.");
+                            activeRods.Add(map.listerBuildings.allBuildingsColonist[i]);
+                            result = true;
+                        }
+                    }
                 }
             }
             //Log.Message("Detecting lightning rod buildings from " + map.listerBuildings.allBuildingsColonist.Count.ToString() + " buildings on map " + map.ToString());

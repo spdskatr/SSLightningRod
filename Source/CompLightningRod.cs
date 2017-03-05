@@ -9,9 +9,9 @@ namespace SSLightningRod
 {
     class CompLightningRod : CompPowerTrader
     {
-        private float LightningRodCooldown = 0.00f;
+        private float LightningRodCooldown = 0f;
         public bool notOverwhelmed = true;
-        public int ToggleMode = 2;
+        public int ToggleMode = 1;
         public int strikesHitBase
         {
             get
@@ -44,7 +44,7 @@ namespace SSLightningRod
                 return properties.fakeZIndex;
             }
         }
-        public float powersavechance
+        public int powersavechance
         {
             get
             {
@@ -104,7 +104,7 @@ namespace SSLightningRod
         }
         public void Hit()
         {
-            LightningRodCooldown += 500.00f;
+            LightningRodCooldown += 500f;
             if (LightningRodCooldown > chargeCapacity)
             {
                 notOverwhelmed = false;
@@ -126,11 +126,7 @@ namespace SSLightningRod
             {
                 string text = (PowerNet.CurrentEnergyGainRate() / WattsToWattDaysPerTick).ToString("F0");
                 string text2 = PowerNet.CurrentStoredEnergy().ToString("F0");
-                str.AppendLine("PowerConnectedRateStored".Translate(new object[]
-                {
-        text,
-        text2
-                }));
+                str.AppendLine("PowerConnectedRateStored".Translate(text, text2));
             }
             str.Append("Cooldown: " + Math.Round(LightningRodCooldown) + "/" + chargeCapacity);
             return str.ToString();
@@ -141,20 +137,27 @@ namespace SSLightningRod
             switch (ToggleMode)
             {
                 case 1:
-                    returnstr = "Power saving mode(Click to change modes): Does not consume power when idle, outputs a lot of power when struck, but only has a " + Math.Round(100/powersavechance, 2) + "% chance to attract a lightning bolt and cools down " + cooldownPercentPowerSave + "% slower";
+                    returnstr = "Power saving mode(Click to change modes): Does not consume power when idle, outputs a lot of power when struck, but only has a " + Math.Round((decimal)100 / powersavechance, 2) + "% chance to attract a lightning bolt and cools down " + cooldownPercentPowerSave + "% slower";
                     break;
                 case 2:
-                    returnstr = "Normal mode(Click to change modes): Consumes a bit of power when idle, outputs enough power to sustain itself in a storm and has a 100% chance to attract a lightning bolt";
+                    returnstr = "Normal mode(Click to change modes): Consumes a bit of power when idle, outputs enough power to sustain itself in a storm and has a 100% chance to attract a lightning bolt. Can attract lightning at a " + Math.Round((decimal)100 / powersavechance, 2) + "% chance when overwhelmed.";
                     break;
                 case 3:
-                    returnstr = "Fast cooldown mode(Click to change modes): Cools down 4x faster than normal but consumes triple the amount of power. Has a 100% chance to attract a lightning bolt but will never return power back since most of the power is recycled.";
+                    returnstr = "Fast cooldown mode(Click to change modes): Cools down 4x faster than normal but consumes triple the amount of power. Has a 100% chance to attract a lightning bolt. Can attract lightning at a " + Math.Round((decimal)100 / powersavechance, 2) + "% chance when overwhelmed.";
                     break;
                 default:
                     ToggleMode = 1;
-                    returnstr = "Power saving mode(Click to change modes): Does not consume power when idle, outputs a lot of power when struck, but only has a 33% chance to attract a lightning bolt";
+                    returnstr = "Power saving mode(Click to change modes): Does not consume power when idle, outputs a lot of power when struck, but only has a " + Math.Round((decimal)100 / powersavechance, 2) + "% chance to attract a lightning bolt and cools down " + cooldownPercentPowerSave + "% slower";
                     break;
             }
             return returnstr;
+        }
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+            Scribe_Values.LookValue(ref ToggleMode, "ToggleMode", 1);
+            Scribe_Values.LookValue(ref LightningRodCooldown, "Cooldown", 0);
+            Scribe_Values.LookValue(ref notOverwhelmed, "notOverwhelmed", true);
         }
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {

@@ -56,7 +56,7 @@
         <basePowerConsumption>750</basePowerConsumption>
 		<transmitsPower>true</transmitsPower>
 		<oneInXChanceHitPowerSave>4</oneInXChanceHitPowerSave>
-		<powerGainDischarge>2000</powerGainDischarge>
+		<powerGainDischarge>7000</powerGainDischarge>
 		<strikesHitBase>false</strikesHitBase>
 		<cooldownPercentPowerSave>50</cooldownPercentPowerSave>
 	  </li>

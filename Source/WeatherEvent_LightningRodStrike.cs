@@ -3,6 +3,8 @@ using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Reflection.Emit;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
@@ -12,15 +14,10 @@ namespace SSLightningRod
     [HarmonyPatch(typeof(WeatherEvent_LightningStrike))]
     [HarmonyPatch("FireEvent")]
     [StaticConstructorOnStartup]
-	public class WeatherEvent_LightningRodStrike : WeatherEvent_LightningFlash
+	public static class WeatherEvent_LightningRodStrike
     {
-		private IntVec3 strikeLoc = IntVec3.Invalid;
-
-		private Mesh boltMesh;
-
-		private static readonly Material LightningMat = MatLoader.LoadMat("Weather/LightningBolt");
-
-        public bool ColonistsHaveLightningRodActive(out List<Building> activeRods, Map map)
+        static bool _state_ = false;
+        public static bool ColonistsHaveLightningRodActive(out List<Building> activeRods, Map map)
         {
             bool result = false;
             activeRods = new List<Building>();
@@ -29,7 +26,6 @@ namespace SSLightningRod
                 CompLightningRod comp = map.listerBuildings.allBuildingsColonist[i].TryGetComp<CompLightningRod>();
                 if (comp != null && comp.notOverwhelmed && comp.PowerOn && comp.ToggleMode != 1)
                 {
-                    //Log.Message("Added building to activeRods.");
                     activeRods.Add(map.listerBuildings.allBuildingsColonist[i]);
                     result = true;
                 }
@@ -43,37 +39,25 @@ namespace SSLightningRod
                     if (comp != null && comp.notOverwhelmed && comp.PowerOn && comp.ToggleMode == 1)
                     {
                         int h = random.Next(4);
-                        //Log.Message(h.ToString());
                         if (h == 0)
                         {
-                            //Log.Message("Added power saving building to activeRods.");
                             activeRods.Add(map.listerBuildings.allBuildingsColonist[i]);
                             result = true;
                         }
                     }
                     else if (comp != null && !comp.notOverwhelmed && comp.PowerOn && comp.ToggleMode != 1)
                     {
-                        int h = random.Next(comp.powersavechance);
+                        int h = random.Next(comp.Powersavechance);
                         if (h == 0)
                         {
-                            //Log.Message("Added overwhelmed building to activeRods.");
                             activeRods.Add(map.listerBuildings.allBuildingsColonist[i]);
                             result = true;
                         }
                     }
                 }
             }
-            //Log.Message("Detecting lightning rod buildings from " + map.listerBuildings.allBuildingsColonist.Count.ToString() + " buildings on map " + map.ToString());
+            _state_ = result;
             return result;
-        }
-
-        public WeatherEvent_LightningRodStrike(Map map) : base(map)
-		{
-		}
-
-		public WeatherEvent_LightningRodStrike(Map map, IntVec3 forcedStrikeLoc) : base(map)
-		{
-            strikeLoc = forcedStrikeLoc;
         }
         //no longer needed.
         /*public override void FireEvent()
@@ -122,16 +106,14 @@ namespace SSLightningRod
 		}*/
 
         [HarmonyPriority(Priority.Last)]
-        public static bool Prefix(WeatherEvent_LightningRodStrike __instance)
+        public static void Prefix(WeatherEvent_LightningStrike __instance)
         {
-            WeatherEvent_LightningFlash flash = new WeatherEvent_LightningFlash(__instance.map);
+            WeatherEvent_LightningFlash flash = new WeatherEvent_LightningFlash(Traverse.Create(__instance).Field("map").GetValue<Map>());
             flash.FireEvent();
-            IntVec3 strikeLoc1 = __instance.strikeLoc;
-            Map map1 = __instance.map;
+            Map map1 = Traverse.Create(__instance).Field("map").GetValue<Map>();
             Thing targetRod = null;
-            bool notAbsorbed = true;
             List<Building> activeRods = new List<Building>();
-            bool activeRodsDetected = __instance.ColonistsHaveLightningRodActive(out activeRods, map1);
+            bool activeRodsDetected = ColonistsHaveLightningRodActive(out activeRods, map1);
             if (activeRodsDetected)
             {
                 System.Random rand = new System.Random();
@@ -139,13 +121,16 @@ namespace SSLightningRod
                 Building target = activeRods[num];
                 targetRod = target;
                 List<IntVec3> list = GenAdj.CellsOccupiedBy(target).ToList();
-                int strikesHitBase = (target.TryGetComp<CompLightningRod>().strikesHitBase);
-                float num1 = target.TryGetComp<CompLightningRod>().fakeZIndex;
+                int strikesHitBase = (target.TryGetComp<CompLightningRod>().StrikesHitBase);
+                float num1 = target.TryGetComp<CompLightningRod>().FakeZIndex;
                 int num2 = rand.Next((int)num1 - strikesHitBase);
-                strikeLoc1 = list[0];
-                strikeLoc1.z += num2 + strikesHitBase;
-                notAbsorbed = false;
+                IntVec3 intvec = list[0];
+                intvec.z += num2 + strikesHitBase;
+                Traverse.Create(__instance).Field("strikeLoc").SetValue(intvec);
+                target.TryGetComp<CompLightningRod>().Hit();
             }
+            #region commented area
+            /*
             else if (!strikeLoc1.IsValid)
             {
                 strikeLoc1 = CellFinderLoose.RandomCellWith((IntVec3 sq) => sq.Standable(map1) && !map1.roofGrid.Roofed(sq), map1, 1000);
@@ -170,11 +155,24 @@ namespace SSLightningRod
             SoundInfo info = SoundInfo.InMap(new TargetInfo(strikeLoc1, map1, false), MaintenanceType.None);
             SoundDefOf.Thunder_OnMap.PlayOneShot(info);
             __instance.strikeLoc = strikeLoc1;
-            return false;
+            return false;*/
+            #endregion
         }
-        public override void WeatherEventDraw()
-		{
-			Graphics.DrawMesh(boltMesh, strikeLoc.ToVector3ShiftedWithAltitude(AltitudeLayer.Weather), Quaternion.identity, FadedMaterialPool.FadedVersionOf(LightningMat, LightningBrightness), 0);
-		}
+        /// <summary>
+        /// To stop rods blowing themselves up.
+        /// </summary>
+        public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        {
+            var intermediate = Transpilers.MethodReplacer(instructions, typeof(GenExplosion).GetMethod("DoExplosion", BindingFlags.Public | BindingFlags.Static), typeof(WeatherEvent_LightningRodStrike).GetMethod(nameof(DoExplosionLogic)));
+            return Transpilers.MethodReplacer(intermediate, typeof(MoteMaker).GetMethod("ThrowSmoke"), typeof(WeatherEvent_LightningRodStrike).GetMethod(nameof(DoSmokeLogic)));
+        }
+        public static void DoExplosionLogic (IntVec3 center, Map map, float radius, DamageDef damType, Thing instigator, SoundDef explosionSound = null, ThingDef projectile = null, ThingDef source = null, ThingDef postExplosionSpawnThingDef = null, float postExplosionSpawnChance = 0f, int postExplosionSpawnThingCount = 1, bool applyDamageToExplosionCellsNeighbors = false, ThingDef preExplosionSpawnThingDef = null, float preExplosionSpawnChance = 0f, int preExplosionSpawnThingCount = 1)
+        {
+            if (!_state_) GenExplosion.DoExplosion(center, map, radius, damType, instigator, explosionSound, projectile, source, postExplosionSpawnThingDef, postExplosionSpawnChance, postExplosionSpawnThingCount, applyDamageToExplosionCellsNeighbors, preExplosionSpawnThingDef, preExplosionSpawnChance, preExplosionSpawnThingCount);
+        }
+        public static void DoSmokeLogic (Vector3 loc, Map map, float size)
+        {
+            if (!_state_) MoteMaker.ThrowSmoke(loc, map, size);
+        }
 	}
 }

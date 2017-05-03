@@ -11,7 +11,7 @@ namespace SSDetours
     {
         static DetourInjector()
         {
-            LongEventHandler.QueueLongEvent(Inject, "LibraryStartup", false, null);
+            LongEventHandler.QueueLongEvent(Inject, "Running patches", false, null);
         }
 
         public static void Inject()
@@ -19,10 +19,12 @@ namespace SSDetours
             string Info = "WeatherEvent_LightningStrike.FireEvent";
             try
             {
-                Harmony.HarmonyInstance hinstance = Harmony.HarmonyInstance.Create("com.spdskatr.lightningrod.detours");
-                Log.Message("SS Lightning Rod Detours: Using Harmony to prefix patch " + Info);
-                hinstance.PatchAll(Assembly.GetExecutingAssembly());
-                return;
+                ((Action)(() => {
+                    Harmony.HarmonyInstance hinstance = Harmony.HarmonyInstance.Create("com.spdskatr.lightningrod.detours");
+                    Log.Message("SS Lightning Rod Detours: Using Harmony to Prefix and Transpiler patch " + Info);
+                    hinstance.PatchAll(Assembly.GetExecutingAssembly());
+                    return;
+                }))();
             }
             catch (TypeLoadException) //These lines shouldn't be activated in normal circumstances
             {

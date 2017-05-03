@@ -18,8 +18,7 @@ C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\[SS] Lightning Rod\S
 C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\[SS] Lightning Rod\Source\bin\Debug\NAudio.dll
 C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\[SS] Lightning Rod\Source\bin\Debug\NVorbis.dll
 C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\[SS] Lightning Rod\Source\bin\Debug\UnityEngine.xml
-C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\[SS] Lightning Rod\Source\obj\Debug\SSLightningRod.csprojResolveAssemblyReference.cache
 C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\[SS] Lightning Rod\Source\obj\Debug\LightningRod.dll
 C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\[SS] Lightning Rod\Assemblies\LightningRod.dll
 C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\[SS] Lightning Rod\Source\bin\Debug\0Harmony.dll
-C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\[SS] Lightning Rod\Source\bin\Debug\0Harmony.pdb
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\[SS] Lightning Rod\Source\bin\Debug\LightningRod.dll

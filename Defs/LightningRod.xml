@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Buildings>
+<Defs>
   <ThingDef>
     <category>Building</category>
     <thingClass>Building</thingClass>
@@ -37,11 +37,11 @@
     <description>A lightning rod with an ion beam emitter for map-wide protection from lightning strikes.\n\nRequires power, but discharges power for a short while after it gets hit. Can get overwhelmed.\n\nThese rods were called by many Zeon Resistance agents as "Rapiers", due to the structure looking like a sword protruding into the sky, and is also a symbol Zeon's eventual downfall at the mercy of this lightning rod.</description>
     <size>(1,1)</size>
     <costStuffCount>150</costStuffCount>
-    <CostList>
+    <costList>
       <Silver>200</Silver>
 	  <Steel>35</Steel>
       <Component>5</Component>
-    </CostList>
+    </costList>
     <stuffCategories>
       <li>Metallic</li>
     </stuffCategories>
@@ -68,12 +68,11 @@
     <designationCategory>Misc</designationCategory>
     <building>
 	  <ai_chillDestination>false</ai_chillDestination>
-      <ignoreNeedsPower>false</ignoreNeedsPower>
     </building>
     <placeWorkers>
       <li>PlaceWorker_NotUnderRoof</li>
     </placeWorkers>
-    <designationHotkey>Misc6</designationHotkey>
+    <designationHotKey>Misc6</designationHotKey>
     <researchPrerequisites><li>Machining</li></researchPrerequisites>
   </ThingDef>
-</Buildings>
+</Defs>

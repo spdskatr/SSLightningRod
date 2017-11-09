@@ -174,11 +174,11 @@ namespace SSLightningRod
                     defaultLabel = "Change Mode",
                     defaultDesc = ModeDescs(),
                     Mode = (() => ToggleMode),
-                    toggleAction = delegate
+                    toggleAction = () =>
                     {
-                        if(LightningRodCooldown > 0)
+                        if (LightningRodCooldown > 0)
                         {
-                            Messages.Message("Cannot change mode now, rod still discharging.", MessageSound.RejectInput);
+                            Messages.Message("Cannot change mode now, rod still discharging.", MessageTypeDefOf.RejectInput);
                         }
                         else
                         {

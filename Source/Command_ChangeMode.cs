@@ -11,7 +11,7 @@ namespace SSLightningRod
 
 		public Action toggleAction;
 
-		public SoundDef turnOnSound = SoundDefOf.CheckboxTurnedOn;
+		public SoundDef turnOnSound = SoundDefOf.Checkbox_TurnedOn;
 
         public string Abbrevs(int a)
         {
@@ -48,15 +48,16 @@ namespace SSLightningRod
             toggleAction();
 		}
 
-		public override GizmoResult GizmoOnGUI(Vector2 loc)
-		{
-			GizmoResult result = base.GizmoOnGUI(loc);
-			Rect rect = new Rect(loc.x, loc.y, Width, 75f);
-			Rect position = new Rect(rect.x + rect.width - 24f, rect.y, 24f, 24f);
+        public override GizmoResult GizmoOnGUI(Vector2 loc, float maxWidth)
+        {
+            GizmoResult result = base.GizmoOnGUI(loc, maxWidth);
+            Rect rect = new Rect(loc.x, loc.y, GetWidth(maxWidth), 75f);
+            Rect position = new Rect(rect.x + rect.width - 24f, rect.y, 24f, 24f);
             string modestr = Abbrevs(Mode()).ToString();
-			Widgets.Label(position, modestr);
-			return result;
-		}
+            Text.Font = GameFont.Tiny;
+            Widgets.Label(position, modestr);
+            return result;
+        }
 
 		public override bool InheritInteractionsFrom(Gizmo other)
 		{

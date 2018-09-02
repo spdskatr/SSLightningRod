@@ -3,12 +3,12 @@
   <ThingDef>
     <category>Building</category>
     <thingClass>Building</thingClass>
-    <soundImpactDefault>BulletImpactMetal</soundImpactDefault>
+    <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
     <selectable>true</selectable>
     <drawerType>MapMeshAndRealTime</drawerType>
     <repairEffect>Repair</repairEffect>
     <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
-    <filthLeaving>BuildingRubble</filthLeaving>
+    <filthLeaving>Filth_RubbleBuilding</filthLeaving>
     <defName>LightningRod</defName>
     <label>lightning rod</label>
     <graphicData>
@@ -34,13 +34,13 @@
       <Beauty>-40</Beauty>
     </statBases>
     <tickerType>Normal</tickerType>
-    <description>A lightning rod with an ion beam emitter for map-wide protection from lightning strikes.\n\nRequires power, but discharges power for a short while after it gets hit. Can get overwhelmed.\n\nThese rods were called by many Zeon Resistance agents as "Rapiers", due to the structure looking like a sword protruding into the sky, and is also a symbol Zeon's eventual downfall at the mercy of this lightning rod.</description>
+    <description>A lightning rod with an ion beam emitter for map-wide protection from lightning strikes.\n\nRequires power, but discharges power for a short while after it gets hit. Can get overwhelmed.</description>
     <size>(1,1)</size>
     <costStuffCount>150</costStuffCount>
     <costList>
       <Silver>200</Silver>
 	  <Steel>35</Steel>
-      <Component>5</Component>
+      <ComponentIndustrial>5</ComponentIndustrial>
     </costList>
     <stuffCategories>
       <li>Metallic</li>
@@ -52,7 +52,7 @@
 	    <cooldownSpeed>0.25</cooldownSpeed>
 		<chargeCapacity>2000</chargeCapacity>
 		<fakeZIndex>4</fakeZIndex>
-        <startElectricalFires>false</startElectricalFires>
+        <shortCircuitInRain>false</shortCircuitInRain>
         <basePowerConsumption>750</basePowerConsumption>
 		<transmitsPower>true</transmitsPower>
 		<oneInXChanceHitPowerSave>4</oneInXChanceHitPowerSave>
@@ -66,13 +66,9 @@
     <rotatable>false</rotatable>
     <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
     <designationCategory>Misc</designationCategory>
-    <building>
-	  <ai_chillDestination>false</ai_chillDestination>
-    </building>
     <placeWorkers>
       <li>PlaceWorker_NotUnderRoof</li>
     </placeWorkers>
-    <designationHotKey>Misc6</designationHotKey>
     <researchPrerequisites><li>Machining</li></researchPrerequisites>
   </ThingDef>
 </Defs>
